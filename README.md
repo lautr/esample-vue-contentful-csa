@@ -1,6 +1,6 @@
 # app
 
-> A Vue.js project
+> A SImple Testcase for a VUE CSA App using Contentful
 
 ## Build Setup
 
