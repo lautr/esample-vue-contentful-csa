@@ -1,6 +1,6 @@
 # app
 
-> A SImple Testcase for a VUE CSA App using Contentful
+> A Simple Testcase for a VUE CSA App using Contentful
 
 ## Build Setup
 
