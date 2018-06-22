@@ -37,7 +37,13 @@ export default {
   name: 'Homepage',
   metaInfo () {
     return {
-      title: this.msg
+      title: this.msg,
+      meta: [
+        {
+          'name': 'google-site-verification',
+          'content': 'T4bIs7gHVNXI9iAAD5-0RbUZOWhhw_HlTit26aWMJeQ'
+        }
+      ]
     }
   },
   created () {

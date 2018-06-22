@@ -18,7 +18,13 @@ export default {
   name: 'Article',
   metaInfo () {
     return {
-      title: this.article.title
+      title: this.article.title,
+      meta: [
+        {
+          'name': 'google-site-verification',
+          'content': 'T4bIs7gHVNXI9iAAD5-0RbUZOWhhw_HlTit26aWMJeQ'
+        }
+      ]
     }
   },
   created () {
