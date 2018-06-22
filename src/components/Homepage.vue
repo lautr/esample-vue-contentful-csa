@@ -77,7 +77,7 @@ export default {
       offers: [],
       articles: [],
       articleImages: [],
-      msg: 'Welcome to this CSA Test Page'
+      msg: 'Welcome to this CSA Test Page - für manuel'
     }
   },
   methods: {
