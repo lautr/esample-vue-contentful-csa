@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>My Little Boilerplate</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="icon" href="data:,">
+</head>
+<body>
+	<h1>foo</h1>
+    <component time="3" value="component 1-3"></component>
+    <component time="2" value="component 2-2"></component>
+    <component time="1" value="component 3-4"></component>
+	<component time="1" value="component 4-1"></component>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"></script>
+    <script type="text/babel">
+let componentHandlerDefault = async (component) => {
+	return `<h1>${component.getAttribute('value')}</h1>`
+}
+let componentHandlerAjax = async (component) => {
+  return fetch('https://httpbin.org/delay/'+component.getAttribute('time')+'?value=some value ').then(function(response) {
+    return response.json()
+  }).then(function(data) {
+    console.log(data)
+    return `<h1>${data.args.value}</h1>`
+  });
+}
+
+let compononentPromises = []
+
+;[].forEach.call(document.querySelectorAll('component'), (component) => {
+	//var promise = handleComponent(component)
+  console.log(component.getAttribute('value') + ' !1!')
+
+  if ('component 1-3' === component.getAttribute('value') || 'component 3-4' === component.getAttribute('value')) {
+    
+    compononentPromises.push(componentHandlerAjax(component).then((componentContent) => {
+      let tmpObject = document.createElement('div')
+      tmpObject.innerHTML = componentContent
+      component.parentNode.replaceChild(
+        tmpObject,
+        component
+      )
+    }))
+  } else {
+    compononentPromises.push(componentHandlerDefault(component).then((componentContent) => {
+      let tmpObject = document.createElement('div')
+      tmpObject.innerHTML = componentContent
+    		component.parentNode.replaceChild(
+        	tmpObject,
+          component
+        )
+    }))
+  }
+})
+
+Promise.all(compononentPromises).then(() => {
+	console.log('all done, woop woop!')
+})
+	</script>
+	<!--
+	basic boilerplate for simple stand alone pages
+	with everything inline in case you don't want or need assets
+	@see https://github.com/lautr/HTML-Boilerplate
+	-->
+</body>
+</html>
