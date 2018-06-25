@@ -15,10 +15,10 @@
     <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.10/lodash.min.js"></script>
     <script type="text/babel">
-let componentHandlerDefault = async (component) => {
+let componentHandlerDefault = (component) => {
 	return `<h1>${component.getAttribute('value')}</h1>`
 }
-let componentHandlerAjax = async (component) => {
+let componentHandlerAjax = (component) => {
   return fetch('https://httpbin.org/delay/'+component.getAttribute('time')+'?value=some value ').then(function(response) {
     return response.json()
   }).then(function(data) {
